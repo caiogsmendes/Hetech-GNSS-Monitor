@@ -2,8 +2,24 @@
 #include <boost/lexical_cast.hpp>
 #include <iostream>
 
+
+
+// Add UART comms
+
+
 int main(int argc, char *argv[])
 {
+    //declaração dos ponteiros
+    double ppos_x;
+    double ppos_y;
+    double ppos_z;
+    double pvel_x;
+    double pvel_y;
+    double pvel_z;
+    double plat;
+    double pllong;
+    double palt;
+
     try
         {
             // Check command line arguments.
@@ -22,7 +38,7 @@ int main(int argc, char *argv[])
                     gnss_sdr::MonitorPvt monitor;
                     if (udp_listener.read_n_parse_gnss_pvt(monitor))
                         {
-                            udp_listener.print_monitor(monitor);
+                            udp_listener.print_monitor(monitor, &ppos_x,&ppos_y,&ppos_z,&pvel_x,&pvel_y,&pvel_z,&plat,&pllong,&palt);
                         }
                     else
                         {
